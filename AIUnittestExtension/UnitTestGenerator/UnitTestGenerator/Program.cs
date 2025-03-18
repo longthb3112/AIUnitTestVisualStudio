@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 if (args != null && args.Length > 0)
 {
     // Retrieve arguments
-    string apikey = args[0] ?? string.Empty;  
-    string chatgptModel = args[1] ?? string.Empty; 
-    string outputFolder = args[2] ?? string.Empty;
-    string selectedFile = args[3] ?? string.Empty;
+    string apikey = "sk-proj-eIRIzMcgB992Du0wMdmfT3BlbkFJpV9JA5RSyjKxGrc8BDQv";
+    string chatgptModel = "gpt-3.5-turbo";
+    string outputFolder = "C:\\Users\\lhtran\\OneDrive - Advanced Infusion Solutions\\AI_Learning\\UnittestGenerations";
+    string selectedFile = "C:\\lynx\\src\\Shared Libraries\\AIS.Domain\\Data\\Profile\\AddressBLL.cs";
 
     if (string.IsNullOrEmpty(apikey) || string.IsNullOrEmpty(chatgptModel) || string.IsNullOrEmpty(outputFolder) || string.IsNullOrEmpty(selectedFile))
     {

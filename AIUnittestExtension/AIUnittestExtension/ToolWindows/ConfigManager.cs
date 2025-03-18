@@ -10,7 +10,7 @@ namespace AIUnittestExtension
        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
        "AIUnitTestExtension",
        "config.json"
-   );
+        );
 
         static ConfigManager()
         {

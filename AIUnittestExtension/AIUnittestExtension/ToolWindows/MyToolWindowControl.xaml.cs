@@ -1,11 +1,16 @@
-﻿using Community.VisualStudio.Toolkit;
+﻿using AIUnittestExtension.ToolWindows;
+using Community.VisualStudio.Toolkit;
 using Microsoft.Win32;
+using System.CodeDom.Compiler;
+using System.CodeDom;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using Microsoft.CodeDom.Providers.DotNetCompilerPlatform;
 
 namespace AIUnittestExtension
 {
@@ -47,37 +52,46 @@ namespace AIUnittestExtension
                 };
                 ConfigManager.SaveSettings(updatedSettings);
             }
-
-            var docView = await VS.Documents.GetActiveDocumentViewAsync();
-            if (docView?.FilePath != null && Path.GetExtension(docView.FilePath).Equals(".cs"))
+            
+            try
             {
-                await VS.MessageBox.ShowAsync(string.Empty, docView.FilePath, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
+                var docView = await VS.Documents.GetActiveDocumentViewAsync();
+                if (docView?.FilePath != null && Path.GetExtension(docView.FilePath).Equals(".cs"))
+                {
+                    await VS.MessageBox.ShowAsync(string.Empty, docView.FilePath, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
 
-                string extensionDir = Path.GetDirectoryName(typeof(MyToolWindowControl).Assembly.Location);
-              //  string exePath = Path.Combine(extensionDir, "UnitTestGenerator.exe");
+                    string result = string.Empty;
+                    await LoadingIndicator.ShowLoadingAsync(async () =>
+                    {
+                        IUnitTestHandler handler = new DotNetClassHandler();
+                        result = await handler.GenerateUnitTestAsync(docView.FilePath, FolderPathTextBox.Text, APITextBox.Password, ModelTextBox.Text);
+                    });
 
-                // Get the directory where the extension's DLL is located
-                //    string extensionDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
-
-                //     string exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "UnitTestGenerator.exe");
-
-
-                // Search for the .exe in all subdirectories
-                string exePath = Directory
-                    .GetFiles(extensionDir, "UnitTestGenerator.exe", SearchOption.AllDirectories)
-                    .FirstOrDefault() ?? string.Empty;
-
-                var parameters = $"{APITextBox.Password} {ModelTextBox.Text} \"{FolderPathTextBox.Text}\" \"{docView.FilePath}\"";
-
-                string result = await ConsoleCommandHelper.RunCommandAsync(exePath, parameters);
-
-                await VS.MessageBox.ShowAsync(string.Empty, result, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
+                    await VS.MessageBox.ShowAsync(string.Empty, result, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
+                }
+                else
+                {
+                    await VS.MessageBox.ShowAsync(string.Empty, "Please select a .cs file to generate unit test", buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_CRITICAL);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                await VS.MessageBox.ShowAsync(string.Empty, "Please select a .cs file to generate unit test", buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_CRITICAL);
+                await VS.MessageBox.ShowAsync(string.Empty, ex.Message, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_CRITICAL);
+            }
+            
+        }
+      
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    FolderPathTextBox.Text = dialog.SelectedPath;
+                }
             }
         }
+
         private string Validate()
         {
             const string CHATGPT_API_KEY_REQUIRED = "ChatGPT api key is required.";
@@ -99,16 +113,6 @@ namespace AIUnittestExtension
 
             return string.Empty;
         }
-        private void BrowseButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (var dialog = new FolderBrowserDialog())
-            {
-                if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    FolderPathTextBox.Text = dialog.SelectedPath;
-                }
-            }
 
-        }
     }
 }

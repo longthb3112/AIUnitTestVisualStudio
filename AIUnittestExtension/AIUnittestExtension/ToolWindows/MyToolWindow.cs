@@ -8,7 +8,7 @@ namespace AIUnittestExtension
 {
     public class MyToolWindow : BaseToolWindow<MyToolWindow>
     {
-        public override string GetTitle(int toolWindowId) => "Generate Unit Test";
+        public override string GetTitle(int toolWindowId) => "Generate Unit Test For Selected File";
         
         public override Type PaneType => typeof(Pane);
 
