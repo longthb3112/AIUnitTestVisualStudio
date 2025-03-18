@@ -47,9 +47,18 @@ namespace AIUnittestExtension.ToolWindows
         }
         public async Task<string> GenerateUnitTestForChunkAsync(string methodCode, string apiKey, string model, string className)
         {
-            var prompt = $"Generate test cases for the following C# class {className}. The unit tests should use Xunit and Moq to mock any database or any dependencies, " +
-                $"include positive and negative test cases, and verify the expected behavior. Ensure proper assertions and exception handling. " +
-                $"namespace or class name should not be included in result. Only return unit test methods for C# method :\n\n{methodCode} not inside a class structure and return only C# code and remove ```csharp and ```";
+           var prompt = $"Generate unit test methods for the following C# method in class {className}:" +
+                $"{methodCode}" +
+                $"Requirements:" +
+                $"- Use xUnit for testing." +
+                $"- Use Moq to mock any database interactions or dependencies." +
+                $"- Include both positive and negative test cases to verify expected behavior." +
+                $"- Ensure proper assertions and exception handling." +
+                $"- Do **not** include the namespace or class definition in the output." +
+                $"- **Do not** generate test cases involving exceeding MinValue or MaxValue (e.g., MaxValue + 1, MinValue - 1)." +
+                $"- Return **only** valid C# test methods, without enclosing them in a class." +
+                $"- **Do not include** Markdown formatting (e.g., ` ```csharp` and ` ``` `)." +
+                $"- Use `{className}` when calling the method under test.";
             try
             {
                 var response = await CallChatGPTAsync(prompt, apiKey, model);
@@ -222,20 +231,5 @@ namespace AIUnittestExtension.ToolWindows
             //    }
             //}
         }
-    }
-
-    public class ChatGPTResponse
-    {
-        public Choice[] Choices { get; set; }
-    }
-
-    public class Choice
-    {
-        public Message Message { get; set; }
-    }
-
-    public class Message
-    {
-        public string Content { get; set; }
-    }
+    } 
 }

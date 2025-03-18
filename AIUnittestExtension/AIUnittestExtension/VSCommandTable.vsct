@@ -14,7 +14,7 @@
 			  <Icon guid="ImageCatalogGuid" id="GenerateFile" />
         <CommandFlag>IconIsMoniker</CommandFlag>
         <Strings>
-          <ButtonText>Generate Unit Test</ButtonText>
+          <ButtonText>Generate Unit Test For Selected File</ButtonText>
           <LocCanonicalName>.Tools.MyToolWindow</LocCanonicalName>
         </Strings>
       </Button>

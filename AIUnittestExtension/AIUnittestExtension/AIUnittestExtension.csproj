@@ -45,7 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ToolWindows\ConfigManager.cs" />
+    <Compile Include="ToolWindows\Config\ConfigManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="AIUnittestExtensionPackage.cs" />
@@ -54,12 +54,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\DotNetClassHandler.cs" />
-    <Compile Include="ToolWindows\IUnitTestHandler.cs" />
+    <Compile Include="ToolWindows\Handlers\ChatGPTResponse.cs" />
+    <Compile Include="ToolWindows\Handlers\DotNetClassHandler.cs" />
+    <Compile Include="ToolWindows\Handlers\IUnitTestHandler.cs" />
     <Compile Include="ToolWindows\LoadingControl.xaml.cs">
       <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\ToolWindowSetting.cs" />
+    <Compile Include="ToolWindows\Config\ToolWindowSetting.cs" />
     <Compile Include="VSCommandTable.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
