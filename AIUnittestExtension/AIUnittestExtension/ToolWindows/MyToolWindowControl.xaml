@@ -12,13 +12,14 @@
              toolkit:Themes.UseVsTheme="True"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400"
+             d:DesignWidth="800"
              Name="MyToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="400"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -37,15 +38,27 @@
         <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10,10,5,10">Select Output Path:</Label>
         <TextBox x:Name="FolderPathTextBox" Grid.Row="2" Grid.Column="1" Margin="5,10,5,10" VerticalAlignment="Center" IsReadOnly="True"/>
         <Button Grid.Row="2" Grid.Column="2" Content="Browse..." Margin="5,10,10,10" Click="BrowseButton_Click"/>
-        <!--Row 0 -->
+        <!--Row 3 -->
+        <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10,10,5,10">Requirements:</Label>
+        <TextBox Name="RequirementTextBox"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto"
+                 Margin="10"
+                 Grid.Row="3" Grid.Column="1"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="Default" Margin="5,10,10,10" Click="DefaultButton_Click" Height="20"/>
+        <!--Row 4 -->
         <Button Content="Generate Unit Test"
          Click="GenerateButton_Click"
          Width="120"
          Height="30"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.Column="1"
          x:Name="GenerateButton" />
-        <local:LoadingControl x:Name="LoadingIndicator"  Grid.Row="4" Grid.Column="1"/>
+        <!--Row 5 -->
+        <local:LoadingControl x:Name="LoadingIndicator"  Grid.Row="5" Grid.Column="1"/>
      
     </Grid>
 </UserControl>

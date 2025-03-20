@@ -1,8 +1,8 @@
-﻿using System.Runtime.InteropServices;
+﻿using Microsoft.VisualStudio.Imaging;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.VisualStudio.Imaging;
 
 namespace AIUnittestExtension
 {
@@ -23,6 +23,7 @@ namespace AIUnittestExtension
             public Pane()
             {
                 BitmapImageMoniker = KnownMonikers.ToolWindow;
+
             }
         }
     }

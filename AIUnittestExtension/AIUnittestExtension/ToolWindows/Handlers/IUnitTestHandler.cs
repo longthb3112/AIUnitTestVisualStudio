@@ -8,6 +8,6 @@ namespace AIUnittestExtension.ToolWindows
 {
    public interface IUnitTestHandler
     {
-        Task<string> GenerateUnitTestAsync(string selectedFilePath, string outPutFolderPath, string apiKey, string model);
+        Task<string> GenerateUnitTestAsync(string selectedFilePath, string outPutFolderPath, string apiKey, string model, string inputPrompt);
     }
 }

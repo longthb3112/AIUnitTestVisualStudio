@@ -45,6 +45,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ToolWindows\AI\ChatGPT.cs" />
     <Compile Include="ToolWindows\Config\ConfigManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="ToolWindows\Handlers\ChatGPTResponse.cs" />
     <Compile Include="ToolWindows\Handlers\DotNetClassHandler.cs" />
     <Compile Include="ToolWindows\Handlers\IUnitTestHandler.cs" />
+    <Compile Include="ToolWindows\Helpers\ClassHelper.cs" />
     <Compile Include="ToolWindows\LoadingControl.xaml.cs">
       <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
@@ -112,8 +114,19 @@
   <ItemGroup>
     <PackageReference Include="Community.VisualStudio.VSCT" Version="16.0.29.6" PrivateAssets="all" />
     <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.507" ExcludeAssets="Runtime" />
-    <PackageReference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <Version>3.6.0</Version>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers">
+      <Version>3.11.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
+      <Version>3.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <Version>3.11.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common">
+      <Version>3.11.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.9.3168" />
     <PackageReference Include="System.Text.Json">
