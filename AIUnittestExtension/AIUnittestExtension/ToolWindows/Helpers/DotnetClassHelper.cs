@@ -13,8 +13,7 @@ using Microsoft.CodeAnalysis.CSharp.Formatting;
 
 namespace AIUnittestExtension.ToolWindows.Helpers
 {
-    public static class ClassHelper
-
+    public static class DotnetClassHelper
     {
         public static string ExtractClassName(string filePath)
         {
@@ -55,7 +54,6 @@ namespace AIUnittestExtension.ToolWindows.Helpers
 
             return eligibleMethods;
         }
-
         static bool IsEligibleForUnitTest(MethodDeclarationSyntax method)
         {
             // 1. The method should have a body
@@ -202,7 +200,6 @@ namespace AIUnittestExtension.ToolWindows.Helpers
             }
             return count;
         }
-
         public static string FormatCSharpCode(string code)
         {
             // Parse the code into a syntax tree

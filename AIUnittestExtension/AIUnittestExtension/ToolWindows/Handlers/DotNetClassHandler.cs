@@ -13,9 +13,9 @@ namespace AIUnittestExtension.ToolWindows
        
         public async Task<string> GenerateUnitTestAsync(string filePath, string outPutFolderPath, string apiKey, string model, string inputPrompt)
         {
-            var methodChunks = ClassHelper.ExtractPublicMethods(filePath);
-            var className = ClassHelper.ExtractClassName(filePath);
-            var templatefileText = ClassHelper.ExtractClassTemplate(filePath , UNITTEST_TOKEN);
+            var methodChunks = DotnetClassHelper.ExtractPublicMethods(filePath);
+            var className = DotnetClassHelper.ExtractClassName(filePath);
+            var templatefileText = DotnetClassHelper.ExtractClassTemplate(filePath , UNITTEST_TOKEN);
 
             if (string.IsNullOrEmpty(templatefileText))
             {
@@ -23,7 +23,7 @@ namespace AIUnittestExtension.ToolWindows
             }
 
             //merge chunks to bucket to reduce AI requests 
-            var buckets = ClassHelper.Bucketize(methodChunks, ( s => s.Split(new[] { "\r\n" }, StringSplitOptions.None).Length - 1), 150);
+            var buckets = DotnetClassHelper.Bucketize(methodChunks, ( s => s.Split(new[] { "\r\n" }, StringSplitOptions.None).Length - 1), 150);
             var finalUnitTestContent = new StringBuilder();
 
             foreach (var key in buckets.Keys)
@@ -33,11 +33,18 @@ namespace AIUnittestExtension.ToolWindows
             }
           
             // Save final combined unit test file
-            var combinedResult = ClassHelper.FormatCSharpCode(templatefileText.Replace(UNITTEST_TOKEN, finalUnitTestContent.ToString()));
+            var combinedResult = DotnetClassHelper.FormatCSharpCode(RelaceToken(templatefileText, finalUnitTestContent.ToString(), UNITTEST_TOKEN));
             var outPutFilePath = Path.Combine(outPutFolderPath, $"{className}Test.cs");
             File.WriteAllText(outPutFilePath, combinedResult);
 
             return $"Generated Unit Test File: {outPutFilePath}";
+        }
+        static string RelaceToken(string templatefileText,string content, string TOKEN)
+        {
+            return templatefileText.Replace(TOKEN, content)
+                            .Replace("```csharp", "")
+                            .Replace("```", "");
+                            
         }
         public async Task<string> GenerateUnitTestForChunkAsync(string methodCode, string apiKey, string model, string className, string inputPrompt)
         {

@@ -58,7 +58,7 @@
     <Compile Include="ToolWindows\Handlers\ChatGPTResponse.cs" />
     <Compile Include="ToolWindows\Handlers\DotNetClassHandler.cs" />
     <Compile Include="ToolWindows\Handlers\IUnitTestHandler.cs" />
-    <Compile Include="ToolWindows\Helpers\ClassHelper.cs" />
+    <Compile Include="ToolWindows\Helpers\DotnetClassHelper.cs" />
     <Compile Include="ToolWindows\LoadingControl.xaml.cs">
       <DependentUpon>LoadingControl.xaml</DependentUpon>
     </Compile>
