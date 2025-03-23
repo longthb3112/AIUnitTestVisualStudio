@@ -1,4 +1,5 @@
 ﻿using AIUnittestExtension.ToolWindows;
+using AIUnittestExtension.ToolWindows.AI;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.IO;
@@ -10,14 +11,12 @@ namespace AIUnittestExtension
     public partial class MyToolWindowControl : System.Windows.Controls.UserControl
     {
         private const string DEFAULT_REQUIREMENTS = 
-            $"- Use xUnit for testing." +
+            $"- Use xUnit and Moq for testing." +
             $"\n- **Always include `[Fact]`** before each test method." +
-            $"\n- Use StaticMock **only** for database-related operations (e.g., `DbContext`, `DbSet<T>`, stored procedures)." +
-            "\n- **Do not** mock factory methods, utility functions, or non-database logic (e.g., `{className}.Create`)." +
-            $"\n- **Only mock static methods that interact with the database.**" +
             $"\n- Ensure that condition factories, dictionary lookups, and in-memory logic **are not mocked**." +
             $"\n- Include both positive and negative test cases to verify expected behavior." +
             $"\n- Ensure proper assertions and exception handling." +
+            $"\n- Ensure exception handling not for MaxValue and MinValue case" +
             $"\n- Do **not** include the namespace or class definition in the output." +
             $"\n- **Do not** generate test cases involving exceeding MinValue or MaxValue (e.g., MaxValue + 1, MinValue - 1)." +
             $"\n- Return **only** valid C# test methods, without enclosing them in a class." +
@@ -25,7 +24,7 @@ namespace AIUnittestExtension
             "\n- Use `{className}` when calling the method under test." +
             "\n- **Do not add extra properties to entities that are not used in `{methodCode}`.**" +
             "\n- If a database entity is returned, do not add fields like `Street`, `City`, etc., unless they are present in `{methodCode}`." +
-            "\n- **StaticMock.Mock.Setup() should only be used for methods inside it—not for `{className}.methodName` itself.**";
+            "\n- **Mock should only be used for methods inside it—not for `{className}.methodName` itself.**";
         public MyToolWindowControl()
         {
             InitializeComponent();
@@ -66,17 +65,17 @@ namespace AIUnittestExtension
                     string result = string.Empty;
                     await LoadingIndicator.ShowLoadingAsync(async () =>
                     {
-                        IUnitTestHandler handler = new DotNetClassHandler();
+                        IUnitTestHandler handler = new DotNetClassHandler(new ChatGPT());
                         result = await handler.GenerateUnitTestAsync(docView.FilePath, FolderPathTextBox.Text, APITextBox.Password, ModelTextBox.Text, RequirementTextBox.Text);
                     });
 
-                    var messageResult = await VS.MessageBox.ShowAsync("Confirmation", result, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK);
-
-                    if (messageResult == VSConstants.MessageBoxResult.IDOK && result != null && result.Contains("Generated Unit Test File:"))
+                    var isSuccess = result.Contains("Generated Unit Test File:");
+                    var confirmMessage = result + (isSuccess ? "\nNote: File path is copied to clipboard!" : string.Empty);
+                    await VS.MessageBox.ShowAsync("Confirmation", confirmMessage, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK);
+                    if (isSuccess)
                     {
-                        System.Windows.Clipboard.SetText(result.Replace("Generated Unit Test File:",""));
-                        await VS.MessageBox.ShowAsync("Success", "File path is copied to clipboard!", OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK);
-                    }
+                        System.Windows.Clipboard.SetText(result.Replace("Generated Unit Test File:", ""));
+                    }                  
                 }
                 else
                 {

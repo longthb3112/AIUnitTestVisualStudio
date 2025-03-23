@@ -1,19 +1,15 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
-using System.IO;
 using System.Text.RegularExpressions;
-using System.Runtime.Serialization;
-using Microsoft.CodeAnalysis.CSharp.Formatting;
 
 namespace AIUnittestExtension.ToolWindows.Helpers
 {
-    public static class DotnetClassHelper
+    public static class DotnetClassHelper 
     {
         public static string ExtractClassName(string filePath)
         {

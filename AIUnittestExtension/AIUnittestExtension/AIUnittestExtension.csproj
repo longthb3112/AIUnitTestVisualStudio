@@ -55,7 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Compile>
-    <Compile Include="ToolWindows\Handlers\ChatGPTResponse.cs" />
+    <Compile Include="ToolWindows\AI\ChatGPTResponse.cs" />
     <Compile Include="ToolWindows\Handlers\DotNetClassHandler.cs" />
     <Compile Include="ToolWindows\Handlers\IUnitTestHandler.cs" />
     <Compile Include="ToolWindows\Helpers\DotnetClassHelper.cs" />
@@ -70,6 +70,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Preview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\UnitTest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
@@ -77,7 +85,9 @@
     </None>
     <Content Include="Resources\Icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\Icon1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

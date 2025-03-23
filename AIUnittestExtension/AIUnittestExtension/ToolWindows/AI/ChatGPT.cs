@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +23,7 @@ namespace AIUnittestExtension.ToolWindows.AI
                     model = model,
                     messages = new[]
                     {
-                    new { role = "system", content = "You are an AI expert in unit test that generates unit tests using Xunit and StaticMock for C# methods." },
+                    new { role = "system", content = "You are an AI expert in unit test that generates unit tests for C# methods." },
                     new { role = "user", content = prompt }
                 },
                     max_tokens = 1500
