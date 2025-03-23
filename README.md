@@ -11,10 +11,11 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 With AI Unit Test Extension, writing unit tests has never been easier—generate, customize, and save your test cases effortlessly!
 
 Note: 
--  Default prompt is using xUnit and Moq to generate unit tests. You have freedom to change prompt to match with your requirement. Please experiment and give me feedback so that I can improve it more.
--  When you have many classes to mock, generated test cases might need to be updated to match your need.
--  Maximum lines for a method is **150**. (I want to limit it to 150 lines to have a good result for unit test)
--  Plugin only supports for .cs extension
+- The default prompt utilizes **xUnit** and **Moq** for generating unit tests. However, you have the flexibility to modify both the **prompt** and the **ChatGPT AI model** to better suit your requirements.
+- Feel free to experiment with different configurations and provide feedback to help improve the tool’s performance.
+- When multiple classes need to be mocked, the generated test cases may require adjustments to align with your specific needs.
+- To ensure optimal unit test generation, the maximum supported method length is 150 lines.
+- This plugin exclusively supports C# files (.cs extension).
    
 ## Getting Started
 
@@ -106,10 +107,11 @@ public int Sum(int a, int b)
   
 ## Built With
 
-* [.Net framework 4.8]([https://nodejs.org/en/download/package-manager](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+* [.Net framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 * [xUnit](https://xunit.net/)
 * [Moq](https://github.com/moq)
 * [Extensibility Essentials 2022](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2022)
+* [OpenAI](https://platform.openai.com/docs/overview)
 
 ## Authors
 
