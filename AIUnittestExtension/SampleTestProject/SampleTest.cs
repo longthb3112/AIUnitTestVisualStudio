@@ -33,8 +33,7 @@ namespace SampleUnitTest
             int a = 2;
             int b = 3;
             // Act & Assert
-            var exception = Assert.Throws<ArgumentNullException>(() => sample.Sum(a, b));
-            Assert.NotNull(exception);
+            Assert.Throws<ArgumentNullException>(() => sample.Sum(a, b));
         }
 
         [Fact]

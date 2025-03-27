@@ -31,8 +31,12 @@ namespace AIUnittestExtension.ToolWindows
 
             foreach (var key in buckets.Keys)
             {
-                string unitTest = await GenerateUnitTestForChunkAsync(string.Join("\n", buckets[key]), apiKey, model, className, inputPrompt);
-                finalUnitTestContent.AppendLine(unitTest);
+                var items = buckets[key];
+                foreach (var item in items)
+                {
+                    string unitTest = await GenerateUnitTestForChunkAsync(string.Join("\n", item), apiKey, model, className, inputPrompt);
+                    finalUnitTestContent.AppendLine(unitTest);
+                }             
             }
 
             // Save final combined unit test file
