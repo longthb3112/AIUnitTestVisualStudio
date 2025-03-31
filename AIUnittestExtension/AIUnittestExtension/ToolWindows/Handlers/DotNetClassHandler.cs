@@ -61,10 +61,10 @@ namespace AIUnittestExtension.ToolWindows
         }
         private async Task<string> GenerateUnitTestForChunkAsync(string methodCode, string apiKey, string model, string className, string inputPrompt)
         {
-            var prompt = "Generate unit test methods for the following C# method in class {className}:" +
+            var prompt = ("Generate unit test methods for the following C# method in class {className}:" +
             "{methodCode}" +
             $"\nRequirements:" +
-            inputPrompt.Replace("{methodCode}", methodCode).Replace("{className}", className);
+            inputPrompt).Replace("{methodCode}", methodCode).Replace("{className}", className);
             try
             {
                 var response = await CallAIAsync(prompt, apiKey, model);

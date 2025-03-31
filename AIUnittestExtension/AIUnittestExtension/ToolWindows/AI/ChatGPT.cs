@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 
 namespace AIUnittestExtension.ToolWindows.AI
 {
-    public interface IAI
-    {
-         Task<string> ExecuteAsync(string prompt, string apiKey, string model);
-    }
+   
     public class ChatGPT: IAI
     {
         private static readonly string apiUrl = "https://api.openai.com/v1/chat/completions";
