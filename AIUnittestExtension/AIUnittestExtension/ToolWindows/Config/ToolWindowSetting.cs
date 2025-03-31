@@ -19,6 +19,6 @@ namespace AIUnittestExtension
     {
         Gemini = 1,
         OpenAI = 2,
-        
+        Claude = 3
     }
 }

@@ -44,7 +44,7 @@ namespace AIUnittestExtension.ToolWindows.AI
                 HttpResponseMessage response = await client.PostAsync(apiUrl, content);
                 if (!response.IsSuccessStatusCode)
                 {
-                    return $"Error: {response.StatusCode}";
+                    throw new Exception($"Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
                 }
 
                 string jsonResponse = await response.Content.ReadAsStringAsync();

@@ -38,7 +38,7 @@
                   SelectedIndex="0">
             <ComboBoxItem Content="Gemini" Tag="1"/>
             <ComboBoxItem Content="OpenAI" Tag="2"/>
-            
+            <ComboBoxItem Content="Claude" Tag="3"/>
         </ComboBox>
         <!--Row 1 -->
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,10,5,10">Api Key:</Label>

@@ -36,7 +36,7 @@ namespace AIUnittestExtension.ToolWindows
                 {
                     string unitTest = await GenerateUnitTestForChunkAsync(string.Join("\n", item), apiKey, model, className, inputPrompt);
                     finalUnitTestContent.AppendLine(unitTest);
-                }             
+                }
             }
 
             // Save final combined unit test file
@@ -52,12 +52,12 @@ namespace AIUnittestExtension.ToolWindows
             return $"Generated Unit Test File: {outPutFilePath}";
         }
 
-        static string RelaceToken(string templatefileText,string content, string TOKEN)
+        static string RelaceToken(string templatefileText, string content, string TOKEN)
         {
             return templatefileText.Replace(TOKEN, content)
                             .Replace("```csharp", "")
                             .Replace("```", "");
-                            
+
         }
         private async Task<string> GenerateUnitTestForChunkAsync(string methodCode, string apiKey, string model, string className, string inputPrompt)
         {
@@ -65,15 +65,10 @@ namespace AIUnittestExtension.ToolWindows
             "{methodCode}" +
             $"\nRequirements:" +
             inputPrompt).Replace("{methodCode}", methodCode).Replace("{className}", className);
-            try
-            {
-                var response = await CallAIAsync(prompt, apiKey, model);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
+
+            var response = await CallAIAsync(prompt, apiKey, model);
+            return response;
+
         }
         private async Task<string> CallAIAsync(string prompt, string apiKey, string model)
         {

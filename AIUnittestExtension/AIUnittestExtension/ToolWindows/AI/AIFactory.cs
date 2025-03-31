@@ -18,7 +18,8 @@ namespace AIUnittestExtension.ToolWindows.AI
             aiDictionary = new Dictionary<ModelType, IAI>
             {
                 { ModelType.Gemini, new Gemini() },
-                { ModelType.OpenAI, new ChatGPT() }
+                { ModelType.OpenAI, new ChatGPT() },
+                { ModelType.Claude, new Claude() },
             };
         }
         public IAI GetAI(ModelType aiType)

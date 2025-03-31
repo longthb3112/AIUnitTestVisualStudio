@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ToolWindows\AI\AIFactory.cs" />
     <Compile Include="ToolWindows\AI\ChatGPT.cs" />
+    <Compile Include="ToolWindows\AI\Claude.cs" />
     <Compile Include="ToolWindows\AI\Gemini.cs" />
     <Compile Include="ToolWindows\AI\IAI.cs" />
     <Compile Include="ToolWindows\Config\ConfigManager.cs" />

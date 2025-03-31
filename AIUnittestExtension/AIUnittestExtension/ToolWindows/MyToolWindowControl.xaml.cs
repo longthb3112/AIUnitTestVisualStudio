@@ -26,7 +26,9 @@ namespace AIUnittestExtension
             "\n- **Do not add extra properties to entities that are not used in `{methodCode}`.**" +
             "\n- If a database entity is returned, do not add fields like `Street`, `City`, etc., unless they are present in `{methodCode}`." +
             "\n- **Mock should only be used for methods inside it—not for `{className}.methodName` itself.**" +
-            "\n- Ensure that mock dependencies are injected via the constructor in the format:\nvar TestClass = new TestClass(mockTest.Object);";
+            "\n- Ensure that mock dependencies are injected via the constructor in the format:\nvar TestClass = new TestClass(mockTest.Object);" +
+            "\n- You must carefully analyze the method code to identify the exact types of all dependencies being used and create mocks with the correct interface types. (e.g: _temp => interface ITemp, _term => ITerm)" +
+            "\n- YOUR RESPONSE MUST CONTAIN ONLY THE TEST METHODS THEMSELVES, with no introductory text, explanations, or code fence markers";
         private int _selectedAI = 0;
 
         #region CONSTRUCTOR
@@ -84,8 +86,7 @@ namespace AIUnittestExtension
                 if (APITextBox != null)
                 {
                     LoadSetting(value);
-                }
-              
+                }            
             }
         }
 
@@ -178,6 +179,11 @@ namespace AIUnittestExtension
                     aiSetting = settings.AISetttings.Keys.Contains(ModelType.OpenAI) ? settings.AISetttings[ModelType.OpenAI] : null;
                     APITextBox.Password = aiSetting?.APIKey;
                     ModelTextBox.Text = aiSetting?.Model ?? "gpt-4o-mini";
+                    break;
+                case (int)ModelType.Claude:
+                    aiSetting = settings.AISetttings.Keys.Contains(ModelType.Claude) ? settings.AISetttings[ModelType.Claude] : null;
+                    APITextBox.Password = aiSetting?.APIKey;
+                    ModelTextBox.Text = aiSetting?.Model ?? "claude-3-haiku-20240307";
                     break;
             }
         }
