@@ -29,7 +29,10 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 - ![UI](https://github.com/longthb3112/AIUnitTestVisualStudio/blob/main/Plugin_View.png)
 * When Unit Test file is generated, it will show a confirm message with path of generated file and copy the path to your clipboard.
 
-Note: You can get ChatGPT api key as [instruction](https://www.merge.dev/blog/chatgpt-api-key)
+## How to get key: 
+- Gemini api key  [instruction](https://www.merge.dev/blog/gemini-api-key)
+- ChatGPT api key [instruction](https://www.merge.dev/blog/chatgpt-api-key)
+
 ### Prerequisites
 
 * .Net Framework 4.8
@@ -112,6 +115,8 @@ public int Sum(int a, int b)
 ## Built With
 
 * [.Net framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
+* [OpenAI](https://openai.com/)
+* [Gemini](https://gemini.google.com/app)
 * [xUnit](https://xunit.net/)
 * [Moq](https://github.com/moq)
 * [Extensibility Essentials 2022](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2022)
