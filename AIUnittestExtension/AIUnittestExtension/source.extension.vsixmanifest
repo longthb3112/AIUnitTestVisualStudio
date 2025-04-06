@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="AIUnittestExtension.056fac22-619c-4134-812a-cd7deb4559f9" Version="1.0" Language="en-US" Publisher="Long Tran" />
+    <Identity Id="AIUnittestExtension.056fac22-619c-4134-812a-cd7deb4559f9" Version="1.2" Language="en-US" Publisher="Long Tran" />
     <DisplayName>AIUnittestExtension</DisplayName>
     <Description>AI Unit Test Extension is a powerful Visual Studio plugin that simplifies unit test generation for C# developers. Powered by AI, this extension enables you to instantly create unit tests for any selected .cs file, eliminating the need for manual test writing and boosting productivity.</Description>
     <Icon>Resources\Preview.png</Icon>

@@ -196,23 +196,30 @@ namespace AIUnittestExtension
                 var docView = await VS.Documents.GetActiveDocumentViewAsync();
                 if (docView?.FilePath != null && Path.GetExtension(docView.FilePath).Equals(".cs"))
                 {
-                    await VS.MessageBox.ShowAsync("Selected File", docView.FilePath, buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OK, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
 
-                    string result = string.Empty;
-                    await LoadingIndicator.ShowLoadingAsync(async () =>
-                    {
-                        IAIFactory aiFactory = new AIFactory();
-                        IUnitTestHandler handler = new DotNetClassHandler(aiFactory.GetAI((ModelType)_selectedAI));
-                        result = await handler.GenerateUnitTestAsync(docView.FilePath, FolderPathTextBox.Text, APITextBox.Password, ModelTextBox.Text, RequirementTextBox.Text);
-                    });
+                    var fileSelectResult = await VS.MessageBox.ShowAsync("Selected File", $"Plugin will generate Unit test for this file {docView.FilePath}. Do you want to continue this process?"
+                    , buttons: Microsoft.VisualStudio.Shell.Interop.OLEMSGBUTTON.OLEMSGBUTTON_OKCANCEL, icon: Microsoft.VisualStudio.Shell.Interop.OLEMSGICON.OLEMSGICON_INFO);
 
-                    var isSuccess = result.Contains("Generated Unit Test File:");
-                    var confirmMessage = result + (isSuccess ? "\nNote: File path is copied to clipboard!" : string.Empty);
-                    await VS.MessageBox.ShowAsync("Confirmation", confirmMessage, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK);
-                    if (isSuccess)
+                    // Check the result to determine which button was clicked.
+                    if (fileSelectResult == Microsoft.VisualStudio.VSConstants.MessageBoxResult.IDOK)
                     {
-                        System.Windows.Clipboard.SetText(result.Replace("Generated Unit Test File:", ""));
+                        var generateFileResult = string.Empty;
+                        await LoadingIndicator.ShowLoadingAsync(async () =>
+                        {
+                            IAIFactory aiFactory = new AIFactory();
+                            IUnitTestHandler handler = new DotNetClassHandler(aiFactory.GetAI((ModelType)_selectedAI));
+                            generateFileResult = await handler.GenerateUnitTestAsync(docView.FilePath, FolderPathTextBox.Text, APITextBox.Password, ModelTextBox.Text, RequirementTextBox.Text);
+                        });
+
+                        var isSuccess = generateFileResult.Contains("Generated Unit Test File:");
+                        var confirmMessage = generateFileResult + (isSuccess ? "\nNote: File path is copied to clipboard!" : string.Empty);
+                        await VS.MessageBox.ShowAsync("Confirmation", confirmMessage, OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK);
+                        if (isSuccess)
+                        {
+                            System.Windows.Clipboard.SetText(generateFileResult.Replace("Generated Unit Test File:", ""));
+                        }
                     }
+                    
                 }
                 else
                 {

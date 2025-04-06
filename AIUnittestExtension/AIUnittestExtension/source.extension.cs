@@ -12,7 +12,7 @@ namespace AIUnittestExtension
         public const string Name = "AIUnittestExtension";
         public const string Description = @"AI Unit Test Extension is a powerful Visual Studio plugin that simplifies unit test generation for C# developers. Powered by AI, this extension enables you to instantly create unit tests for any selected .cs file, eliminating the need for manual test writing and boosting productivity.";
         public const string Language = "en-US";
-        public const string Version = "1.0";
+        public const string Version = "1.2";
         public const string Author = "Long Tran";
         public const string Tags = "";
         public const bool IsPreview = false;
