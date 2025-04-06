@@ -3,10 +3,10 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 
 **Key Features:**
 * **AI-Powered Unit Test Generation** – Automatically generate unit tests for selected C# files using AI.
-* **Support for OpenAI and Gemini** – Choose between OpenAI and Gemini models to generate unit tests, allowing you to select the best results based on your needs.
+* **Support for Gemini, OpenAI, Claude** – Choose between models to generate unit tests, allowing you to select the best results based on your needs.
 * **Customizable Prompts** – Tailor the AI’s behavior by modifying prompts to generate test cases that align with your specific requirements.
 * **Flexible Output Options** – Choose a preferred output folder for saving the generated test files, ensuring better project organization.
-* **Persistent Configuration** – The plugin automatically saves user preferences, such as custom prompts and output folder paths, and reloads them on the next use.
+* **Persistent Configuration** – The plugin securely stores user preferences locally, ensuring no security risks, and automatically reloads them on the next use.
 * **Seamless Integration** – Works directly within Visual Studio, enhancing your development workflow without additional setup.
 
 **Why Use AI Unit Test Extension?**
@@ -14,7 +14,7 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 
 **Important Notes:**
 - The default prompt utilizes xUnit and Moq for generating unit tests. However, you have the flexibility to modify both the prompt and the AI model to better suit your requirements.
-- This plugin supports two AI models: OpenAI and Gemini. Users can switch between them and select the best results based on their preference.
+- This plugin supports three AI models: Gemini, OpenAI, Claude. Users can switch between them and select the best results based on their preference.
 - Feel free to experiment with different configurations and provide feedback to help improve the tool’s performance.
 - When multiple classes need to be mocked, the generated test cases may require adjustments to align with your specific needs.
 - To ensure optimal unit test generation, the maximum supported method length is 150 lines.
@@ -32,6 +32,7 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 ## How to get key: 
 - Gemini api key  [instruction](https://www.merge.dev/blog/gemini-api-key)
 - ChatGPT api key [instruction](https://www.merge.dev/blog/chatgpt-api-key)
+- Claude api key  [instruction](https://claudeaihub.com/claude-api-key/)
 
 ### Prerequisites
 
@@ -117,6 +118,7 @@ public int Sum(int a, int b)
 * [.Net framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 * [OpenAI](https://openai.com/)
 * [Gemini](https://gemini.google.com/app)
+* [Claude](https://claude.ai)
 * [xUnit](https://xunit.net/)
 * [Moq](https://github.com/moq)
 * [Extensibility Essentials 2022](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2022)
