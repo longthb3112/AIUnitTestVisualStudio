@@ -22,7 +22,7 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
    
 ## Getting Started
 
-* You can install this [plugin AI Unit VS plugin](https://github.com/longthb3112/AIUnitTestVisualStudio/blob/main/AIUnittestExtension.vsix). 
+* You can install this [plugin AI Unit VS plugin](https://marketplace.visualstudio.com/items?itemName=LongTran.AIUnittestExtension&ssr=false#overview). 
 * Installed plugin is under Tools -> Generate Unit Test For Selected File
 - ![Menu](https://github.com/longthb3112/AIUnitTestVisualStudio/blob/main/Plugin-Menu.png)
 * You can select .cs file that need to generate Unit Test and input all required information then click **Generate Unit Test** button
