@@ -10,7 +10,7 @@ AI Unit Test Extension is a powerful Visual Studio plugin designed to streamline
 * **Seamless Integration** – Works directly within Visual Studio, enhancing your development workflow without additional setup.
 
 **Why Use AI Unit Test Extension?**
-- With AI Unit Test Extension, writing unit tests has never been easier—generate, customize, and save your test cases effortlessly! By supporting both OpenAI and Gemini, the plugin enables users to compare results from different AI models and choose the best one for their specific use case.
+- With AI Unit Test Extension, writing unit tests has never been easier—generate, customize, and save your test cases effortlessly! By supporting both Gemini, OpenAI and Claude the plugin enables users to compare results from different AI models and choose the best one for their specific use case.
 
 **Important Notes:**
 - The default prompt utilizes xUnit and Moq for generating unit tests. However, you have the flexibility to modify both the prompt and the AI model to better suit your requirements.
