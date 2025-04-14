@@ -122,7 +122,6 @@ public int Sum(int a, int b)
 * [xUnit](https://xunit.net/)
 * [Moq](https://github.com/moq)
 * [Extensibility Essentials 2022](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ExtensibilityEssentials2022)
-* [OpenAI](https://platform.openai.com/docs/overview)
 
 ## Authors
 
